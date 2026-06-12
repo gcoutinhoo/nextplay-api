@@ -3,9 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Jogos } from './jogos/entities/jogos.entity';
+import { JogosModule } from './jogos/jogos.module';
 
 @Module({
   imports: [
+    JogosModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
