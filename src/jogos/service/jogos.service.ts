@@ -42,6 +42,22 @@ export class JogosService {
         return jogos;
     }
 
+    async create(jogo: Jogos): Promise<Jogos> {
+        return this.jogoRepository.save(jogo);
+    }
+
+    async update (id: number, jogo: Jogos): Promise<Jogos> {
+        const jogoUpdate = await this.findById(id);
+        return this.jogoRepository.save({...jogoUpdate, ...jogo});
+    }
+
+    async delete(id: number) {
+        const jogo = await this.findById(id);
+        return this.jogoRepository.remove(jogo);
+    }
+
+
+
 
 
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { JogosService } from "../service/jogos.service";
 import { Jogos } from "../entities/jogos.entity";
 
@@ -22,6 +22,24 @@ export class JogosController {
     @HttpCode(HttpStatus.OK)
     findByTitle(@Param('title') title: string): Promise<Jogos[]> {
         return this.jogosService.findByTitle(title);
+    }
+
+    @Post() //http://localhost:4000/jogos
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() jogo: Jogos): Promise<Jogos> {
+        return this.jogosService.create(jogo);
+    }
+
+    @Post('/:id') //http://localhost:4000/jogos/1
+    @HttpCode(HttpStatus.OK)
+    update(@Param('id', ParseIntPipe) id: number, @Body() jogo: Jogos): Promise<Jogos> {
+        return this.jogosService.update(id, jogo);
+    }
+
+    @Delete('/:id') //http://localhost:4000/jogos/1
+    @HttpCode(HttpStatus.NO_CONTENT)
+    delete(@Param('id', ParseIntPipe) id: number) {
+        return this.jogosService.delete(id);
     }
 
 }
