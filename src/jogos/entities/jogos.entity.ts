@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator";
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Usuarios } from "../../usuarios/entities/usuarios.entity";
 
 @Entity({name: "tb_jogos"})
 export class Jogos {
@@ -18,5 +19,8 @@ export class Jogos {
     @IsNotEmpty()
     @Column()
     imagem!: string;
+
+    @ManyToOne(() => Usuarios, user => user.jogos)
+    vendedor!: Usuarios;
 
 }
