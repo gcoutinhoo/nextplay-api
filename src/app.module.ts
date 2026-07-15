@@ -2,9 +2,12 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Jogos } from './jogos/entities/jogos.entity';
+import { JogosModule } from './jogos/jogos.module';
 
 @Module({
   imports: [
+    JogosModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -12,7 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: '1234',
       database: 'db_nextplay',
-      entities: [],
+      entities: [Jogos],
       synchronize: true
     })
   ],
