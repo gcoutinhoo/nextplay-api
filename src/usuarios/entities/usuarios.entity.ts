@@ -11,6 +11,7 @@ export class Usuarios {
         enum: Role,
         default: Role.CLIENTE
     })
+    role!: Role;
 
     @PrimaryGeneratedColumn()
     id!: number
@@ -20,7 +21,6 @@ export class Usuarios {
     nome!: string
 
     @Column()
-    @IsNotEmpty()
     idade!: number
 
     @Column({length: 100, nullable: false})

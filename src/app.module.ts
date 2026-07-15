@@ -4,10 +4,13 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Jogos } from './jogos/entities/jogos.entity';
 import { JogosModule } from './jogos/jogos.module';
+import { Usuarios } from './usuarios/entities/usuarios.entity';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
   imports: [
     JogosModule,
+    UsuariosModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -15,7 +18,7 @@ import { JogosModule } from './jogos/jogos.module';
       username: 'root',
       password: '1234',
       database: 'db_nextplay',
-      entities: [Jogos],
+      entities: [Jogos, Usuarios],
       synchronize: true
     })
   ],
